@@ -1,0 +1,15 @@
+export default {
+  primary: '#d83582',
+  primaryLight: '#f8a1d6',
+  primaryDark: '#a4126e',
+  accent: '#fa60a9',
+  tabBar: '#252525',
+  tabInactive: '#f0edf6',
+  white: '#ffffff',
+  black: '#000000',
+  muted: 'rgba(147, 147, 147, 0.83)',
+  overlay: 'rgba(0, 0, 0, 0.41)',
+  card: 'rgba(255, 255, 255, 0.1)',
+  buttonDark: 'rgba(41, 41, 41, 0.8)',
+  transparent: 'transparent',
+};
