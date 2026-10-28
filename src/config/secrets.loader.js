@@ -13,7 +13,6 @@ export function getAppCredentials(platform) {
   if (!cached) {
     let mod;
     try {
-      // eslint-disable-next-line global-require
       mod = require('./secrets');
     } catch (e) {
       throw new Error(MISSING);

@@ -14,7 +14,14 @@ const ICONS = {
 };
 
 /** Bottom bar: volume slider, call, play/pause and SMS. */
-export default function PlayerControls({ paused, volume, onTogglePlay, onVolumeChange, onCall, onSms }) {
+export default function PlayerControls({
+  paused,
+  volume,
+  onTogglePlay,
+  onVolumeChange,
+  onCall,
+  onSms,
+}) {
   const controlSize = Dimensions.get('window').width * PLAYER.controlWidthRatio;
   return (
     <View style={styles.bar}>
@@ -28,9 +35,23 @@ export default function PlayerControls({ paused, volume, onTogglePlay, onVolumeC
         />
       </View>
       <View style={[styles.inner, styles.buttons]}>
-        <IconButton source={ICONS.call} size={ICON_SIZES.call} tintColor={colors.white} onPress={onCall} />
-        <IconButton source={paused ? ICONS.play : ICONS.pause} size={controlSize} onPress={onTogglePlay} />
-        <IconButton source={ICONS.sms} size={ICON_SIZES.sms} tintColor={colors.white} onPress={onSms} />
+        <IconButton
+          source={ICONS.call}
+          size={ICON_SIZES.call}
+          tintColor={colors.white}
+          onPress={onCall}
+        />
+        <IconButton
+          source={paused ? ICONS.play : ICONS.pause}
+          size={controlSize}
+          onPress={onTogglePlay}
+        />
+        <IconButton
+          source={ICONS.sms}
+          size={ICON_SIZES.sms}
+          tintColor={colors.white}
+          onPress={onSms}
+        />
       </View>
     </View>
   );
@@ -59,7 +80,14 @@ const styles = StyleSheet.create({
   },
   inner: { marginHorizontal: spacing.md, width: '95%' },
   buttons: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
-  track: { ...shadow, height: 10, borderRadius: radii.sm, backgroundColor: colors.white, shadowRadius: 1, shadowOpacity: 0.15 },
+  track: {
+    ...shadow,
+    height: 10,
+    borderRadius: radii.sm,
+    backgroundColor: colors.white,
+    shadowRadius: 1,
+    shadowOpacity: 0.15,
+  },
   thumb: {
     ...shadow,
     width: 20,

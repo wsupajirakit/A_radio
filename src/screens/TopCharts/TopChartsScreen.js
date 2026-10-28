@@ -12,7 +12,12 @@ export default function TopChartsScreen() {
   return (
     <PickerListLayout
       title={STRINGS.topChartsTitle}
-      picker={{ data: dates, placeholder: STRINGS.pickDate, selectedKey: selected, onChange: select }}
+      picker={{
+        data: dates,
+        placeholder: STRINGS.pickDate,
+        selectedKey: selected,
+        onChange: select,
+      }}
       status={{ loading, error, empty: !loading && songs.length === 0, onRetry: reload }}
     >
       {songs.map((song, index) => (

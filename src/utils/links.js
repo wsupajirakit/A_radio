@@ -2,8 +2,13 @@ import { Linking } from 'react-native';
 
 /** Opens a URL if present; failures are ignored (no handler installed, bad URL). */
 export function openUrl(url) {
-  if (!url) return Promise.resolve(false);
-  return Linking.openURL(url).then(() => true, () => false);
+  if (!url) {
+    return Promise.resolve(false);
+  }
+  return Linking.openURL(url).then(
+    () => true,
+    () => false,
+  );
 }
 
 export const telUrl = (phone) => (phone ? `tel:${phone}` : '');

@@ -12,7 +12,12 @@ export default function ScheduleScreen() {
   return (
     <PickerListLayout
       title={STRINGS.scheduleTitle}
-      picker={{ data: DAY_OPTIONS, placeholder: STRINGS.pickDay, selectedKey: day, onChange: setDay }}
+      picker={{
+        data: DAY_OPTIONS,
+        placeholder: STRINGS.pickDay,
+        selectedKey: day,
+        onChange: setDay,
+      }}
       status={{ loading, error, empty: !loading && programs.length === 0, onRetry: reload }}
     >
       {programs.map((program, index) => (

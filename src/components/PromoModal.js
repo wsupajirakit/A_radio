@@ -28,7 +28,11 @@ export default function PromoModal({ visible, popup, onClose }) {
 
 PromoModal.propTypes = {
   visible: PropTypes.bool.isRequired,
-  popup: PropTypes.shape({ image: PropTypes.string, link: PropTypes.string, title: PropTypes.string }),
+  popup: PropTypes.shape({
+    image: PropTypes.string,
+    link: PropTypes.string,
+    title: PropTypes.string,
+  }),
   onClose: PropTypes.func.isRequired,
 };
 

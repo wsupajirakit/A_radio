@@ -41,11 +41,20 @@ export async function get(path, query, options = {}) {
   const { appId, secret } = getAppCredentials(Platform.OS);
   const timestamp = Math.floor(Date.now() / 1000);
   const nonce = createNonce();
-  const signature = sign(secret, { method: 'GET', path: fullPath, query, timestamp, nonce, body: '' });
+  const signature = sign(secret, {
+    method: 'GET',
+    path: fullPath,
+    query,
+    timestamp,
+    nonce,
+    body: '',
+  });
   const qs = canonicalQuery(query);
   const url = API_BASE_URL + fullPath + (qs ? `?${qs}` : '');
 
-  const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+  // AbortController is missing on older React Native runtimes: time out without it there.
+  const Abort = typeof global.AbortController === 'function' ? global.AbortController : null;
+  const controller = Abort ? new Abort() : null;
   let response;
   try {
     response = await withTimeout(
@@ -64,7 +73,9 @@ export async function get(path, query, options = {}) {
       () => controller && controller.abort(),
     );
   } catch (e) {
-    if (e instanceof ApiError) throw e;
+    if (e instanceof ApiError) {
+      throw e;
+    }
     throw new ApiError('network_error', 'Network request failed');
   }
 

@@ -50,7 +50,12 @@ const styles = StyleSheet.create({
   rankCol: { flex: 0.5, marginTop: '1.3%' },
   rank: { ...text, textAlign: 'center', fontSize: typography.rank },
   infoCol: { flex: 3 },
-  titleLine: { flex: 1, flexDirection: 'row', justifyContent: 'space-between', marginRight: spacing.md },
+  titleLine: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginRight: spacing.md,
+  },
   titleCol: { flex: 3 },
   statsCol: { flex: 1.5 },
   song: { ...text, fontSize: typography.title },

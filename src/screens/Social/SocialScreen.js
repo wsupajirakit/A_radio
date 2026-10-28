@@ -4,7 +4,7 @@ import { SocialIcon } from 'react-native-elements';
 import { ScreenBackground, ShareModal, StatusView } from '../../components';
 import { SOCIAL_NETWORKS, STRINGS } from '../../constants';
 import { usePlayerInfo } from '../../hooks';
-import { colors, spacing, typography } from '../../theme';
+import { colors, typography } from '../../theme';
 import { openUrl } from '../../utils';
 
 const LINK_HEIGHT = 48;
@@ -16,7 +16,11 @@ export default function SocialScreen() {
 
   return (
     <ScreenBackground>
-      <ShareModal visible={shareVisible} title={info.appTitle} onClose={() => setShareVisible(false)} />
+      <ShareModal
+        visible={shareVisible}
+        title={info.appTitle}
+        onClose={() => setShareVisible(false)}
+      />
       <View style={styles.page}>
         <View style={styles.logoArea}>
           <TouchableOpacity onPress={() => setShareVisible(true)}>

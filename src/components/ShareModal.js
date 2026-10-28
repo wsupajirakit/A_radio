@@ -9,9 +9,12 @@ import { colors, typography } from '../theme';
 import { openUrl } from '../utils';
 import CloseButton from './CloseButton';
 
-const facebookShareUrl = () => `https://www.facebook.com/share.php?u=${encodeURIComponent(SHARE_URL)}`;
+const facebookShareUrl = () =>
+  `https://www.facebook.com/share.php?u=${encodeURIComponent(SHARE_URL)}`;
 const tweetUrl = () =>
-  `https://twitter.com/intent/tweet?text=${encodeURIComponent(APP_NAME)}&url=${encodeURIComponent(SHARE_URL)}`;
+  `https://twitter.com/intent/tweet?text=${encodeURIComponent(APP_NAME)}&url=${encodeURIComponent(
+    SHARE_URL,
+  )}`;
 
 const BUTTON_WIDTH_RATIO = 1 / 1.45;
 const GAP = 18;
@@ -23,8 +26,18 @@ export default function ShareModal({ visible, title, onClose }) {
       <View style={styles.center}>
         <Text style={styles.title}>{title}</Text>
         <View style={styles.buttons}>
-          <SocialIcon title={STRINGS.shareFacebook} button type="facebook" onPress={() => openUrl(facebookShareUrl())} />
-          <SocialIcon title={STRINGS.shareTwitter} button type="twitter" onPress={() => openUrl(tweetUrl())} />
+          <SocialIcon
+            title={STRINGS.shareFacebook}
+            button
+            type="facebook"
+            onPress={() => openUrl(facebookShareUrl())}
+          />
+          <SocialIcon
+            title={STRINGS.shareTwitter}
+            button
+            type="twitter"
+            onPress={() => openUrl(tweetUrl())}
+          />
         </View>
         <View style={styles.close}>
           <CloseButton onPress={onClose} />

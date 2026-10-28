@@ -13,9 +13,12 @@ export default function useAsync(fn, deps = [], { immediate = true } = {}) {
   const mounted = useRef(true);
   const callId = useRef(0);
 
-  useEffect(() => () => {
-    mounted.current = false;
-  }, []);
+  useEffect(
+    () => () => {
+      mounted.current = false;
+    },
+    [],
+  );
 
   const run = useCallback(() => {
     const id = ++callId.current;
@@ -23,14 +26,22 @@ export default function useAsync(fn, deps = [], { immediate = true } = {}) {
     Promise.resolve()
       .then(fn)
       .then(
-        (data) => mounted.current && id === callId.current && setState({ data, error: null, loading: false }),
-        (error) => mounted.current && id === callId.current && setState((s) => ({ ...s, error, loading: false })),
+        (data) =>
+          mounted.current &&
+          id === callId.current &&
+          setState({ data, error: null, loading: false }),
+        (error) =>
+          mounted.current &&
+          id === callId.current &&
+          setState((s) => ({ ...s, error, loading: false })),
       );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 
   useEffect(() => {
-    if (immediate) run();
+    if (immediate) {
+      run();
+    }
   }, [run, immediate]);
 
   return { ...state, reload: run };

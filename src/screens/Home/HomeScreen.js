@@ -18,7 +18,11 @@ export default function HomeScreen() {
 
   return (
     <ScreenBackground>
-      <PromoModal visible={promoVisible} popup={info.popup} onClose={() => setPromoVisible(false)} />
+      <PromoModal
+        visible={promoVisible}
+        popup={info.popup}
+        onClose={() => setPromoVisible(false)}
+      />
       <View style={styles.container}>
         <Video
           source={{ uri: info.streamUrl || STREAM_URL }}

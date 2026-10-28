@@ -7,7 +7,12 @@ const NONCE_ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123
 export function rfc3986(value) {
   return encodeURIComponent(String(value)).replace(
     /[!'()*]/g,
-    (c) => '%' + c.charCodeAt(0).toString(16).toUpperCase(),
+    (c) =>
+      '%' +
+      c
+        .charCodeAt(0)
+        .toString(16)
+        .toUpperCase(),
   );
 }
 
@@ -16,7 +21,9 @@ export function rfc3986(value) {
  * @param {Object<string, string|number>} [query]
  */
 export function canonicalQuery(query) {
-  if (!query) return '';
+  if (!query) {
+    return '';
+  }
   return Object.keys(query)
     .filter((k) => query[k] !== undefined && query[k] !== null)
     .sort()
@@ -62,9 +69,14 @@ export function createNonce(length = 32) {
   if (cryptoObj && typeof cryptoObj.getRandomValues === 'function') {
     cryptoObj.getRandomValues(bytes);
   } else {
-    for (let i = 0; i < length; i++) bytes[i] = Math.floor(Math.random() * 256);
+    for (let i = 0; i < length; i++) {
+      bytes[i] = Math.floor(Math.random() * 256);
+    }
   }
   let out = '';
-  for (let i = 0; i < length; i++) out += NONCE_ALPHABET[bytes[i] & 63];
+  for (let i = 0; i < length; i++) {
+    // Low 6 bits pick one of the 64 alphabet characters.
+    out += NONCE_ALPHABET[bytes[i] % 64];
+  }
   return out;
 }

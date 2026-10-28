@@ -6,7 +6,9 @@ const DEFAULT_OFFSET = -1.5;
 
 /** Bottom-tab icon tinted by the navigator. */
 export default function TabIcon({ source, size, offset, tintColor }) {
-  return <Image source={source} style={{ width: size, height: size, tintColor, marginTop: offset }} />;
+  return (
+    <Image source={source} style={{ width: size, height: size, tintColor, marginTop: offset }} />
+  );
 }
 
 TabIcon.propTypes = {

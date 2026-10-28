@@ -22,7 +22,9 @@ export default function SelectField({ data, placeholder, selectedKey, onChange }
 const keyType = PropTypes.oneOfType([PropTypes.string, PropTypes.number]);
 
 SelectField.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape({ key: keyType.isRequired, label: PropTypes.string.isRequired })),
+  data: PropTypes.arrayOf(
+    PropTypes.shape({ key: keyType.isRequired, label: PropTypes.string.isRequired }),
+  ),
   placeholder: PropTypes.string.isRequired,
   selectedKey: keyType,
   onChange: PropTypes.func.isRequired,
@@ -31,6 +33,12 @@ SelectField.propTypes = {
 SelectField.defaultProps = { data: [], selectedKey: null };
 
 const styles = StyleSheet.create({
-  box: { width: '100%', height: 40, marginTop: '1%', backgroundColor: colors.white, borderRadius: radii.lg },
+  box: {
+    width: '100%',
+    height: 40,
+    marginTop: '1%',
+    backgroundColor: colors.white,
+    borderRadius: radii.lg,
+  },
   select: { borderColor: colors.transparent },
 });
